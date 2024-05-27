@@ -3,6 +3,7 @@ const focoBt = document.querySelector('.app__card-button--foco');
 const curtoBt = document.querySelector('.app__card-button--curto');
 const longoBT = document.querySelector('.app__card-button--longo');
 const botoes = document.querySelectorAll(".app__card-button");
+const musicaFocoInput = document.querySelector('#alternar-musica');
 
 const telaTempo = document.querySelector('#timer')//getElementById('timer');
 const imagem = document.querySelector('.app__image')//getElementsByClassName('app__image');
