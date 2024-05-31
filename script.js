@@ -13,6 +13,10 @@ const imagem = document.querySelector('.app__image')//getElementsByClassName('ap
 const texto = document.querySelector('.app__title'); 
 //não sei pq, getbyClassName não funcionou no innerHTML
 
+let tempoDecorridoEmSegundos = 5;
+let intervaloId= null;
+
+
 const startButton = document.querySelector('.app__card-primary-button')//getElementById('start-pause');
 const focoTempo = 1500;
 const curtoTempo = 300;
@@ -64,3 +68,15 @@ musicaFocoInput.addEventListener('change', ()=>{
         musica.pause();
     }
 })
+
+const contagemRegressiva = ()=>{ //arow function
+    //inicar();
+    tempoDecorridoEmSegundos --;
+    console.log('Temporizador: '+tempoDecorridoEmSegundos)
+}
+startButton.addEventListener('click', contagemRegressiva)
+
+function inicar(){
+    intervaloId=setInterval(contagemRegressiva,1000)
+    console.log(intervaloId)
+}
