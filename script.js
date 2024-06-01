@@ -12,10 +12,11 @@ const telaTempo = document.querySelector('#timer')//getElementById('timer');
 const imagem = document.querySelector('.app__image')//getElementsByClassName('app__image');
 const texto = document.querySelector('.app__title'); 
 //não sei pq, getbyClassName não funcionou no innerHTML
+const somPause = new Audio('/sons/pause.mp3');
+const somComecar = new Audio('/sons/play.wav');
 
 let tempoDecorridoEmSegundos = 5;
 let intervaloId= null;
-
 
 const startButton = document.querySelector('.app__card-primary-button')//getElementById('start-pause');
 const focoTempo = 1500;
@@ -71,12 +72,32 @@ musicaFocoInput.addEventListener('change', ()=>{
 
 const contagemRegressiva = ()=>{ //arow function
     //inicar();
-    tempoDecorridoEmSegundos --;
-    console.log('Temporizador: '+tempoDecorridoEmSegundos)
+    if(tempoDecorridoEmSegundos<=0){
+        zerar();
+        alert('Tempo finalizado!');
+        console.log(intervaloId);
+
+        return        
+    }
+        tempoDecorridoEmSegundos --;
+        console.log('Temporizador: '+tempoDecorridoEmSegundos);
 }
-startButton.addEventListener('click', contagemRegressiva)
+
+startButton.addEventListener('click', inicar)
 
 function inicar(){
+    if(intervaloId){
+        somPause.play();
+        zerar();
+        console.log(intervaloId);
+    return
+    }
+    somComecar.play();
     intervaloId=setInterval(contagemRegressiva,1000)
-    console.log(intervaloId)
+    console.log(intervaloId);
+}
+
+function zerar(){
+    clearInterval(intervaloId);
+    intervaloId=null;
 }
